@@ -28,7 +28,7 @@ namespace photo_folder
         {
             string[] nefs = Directory.GetFiles(root, "*."+format, SearchOption.TopDirectoryOnly);
 
-            CutCopyFiles(nefs, nef_folder, 1);
+            CutMoveFiles(nefs, nef_folder);
 
         }
 
@@ -42,7 +42,7 @@ namespace photo_folder
             return ret;
         }
 
-        static void CutCopyFiles(string[] files, string dest, int delete)
+        static void CutMoveFiles(string[] files, string dest)
         {
             foreach (string item in files)
             {
@@ -51,17 +51,7 @@ namespace photo_folder
                     FileInfo fi = new FileInfo(item);
                     File.Copy(item, dest + @"\" + fi.Name);
                     //Console.WriteLine("Copy " + item.ToString());
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Copy error " + e.ToString());
-                    Console.WriteLine("Press Enter");
-                    Console.WriteLine("Press Enter");
-                    Console.ReadLine();
-                }
 
-                if (delete > 0)
-                {
                     try
                     {
                         File.Delete(item);
@@ -71,10 +61,18 @@ namespace photo_folder
                     {
                         Console.WriteLine("Delete error " + e.ToString());
                         Console.WriteLine("Press Enter");
-                        Console.WriteLine("Press Enter");
-                        Console.ReadLine();
+                        //Console.ReadLine();
                     }
+
+
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Copy error " + e.ToString());
+                    Console.WriteLine("Press Enter");
+                    //Console.ReadLine();
+                }
+                
             }
         }
     }
