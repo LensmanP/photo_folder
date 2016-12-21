@@ -50,11 +50,14 @@ namespace photo_folder
                 {
                     FileInfo fi = new FileInfo(item);
                     File.Copy(item, dest + @"\" + fi.Name);
-                    Console.WriteLine("Copy " + item.ToString());
+                    //Console.WriteLine("Copy " + item.ToString());
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("Copy error " + e.ToString());
+                    Console.WriteLine("Press Enter");
+                    Console.WriteLine("Press Enter");
+                    Console.ReadLine();
                 }
 
                 if (delete > 0)
@@ -62,11 +65,14 @@ namespace photo_folder
                     try
                     {
                         File.Delete(item);
-                        Console.WriteLine("Delete " + item.ToString());
+                        //Console.WriteLine("Delete " + item.ToString());
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine("Delete error " + e.ToString());
+                        Console.WriteLine("Press Enter");
+                        Console.WriteLine("Press Enter");
+                        Console.ReadLine();
                     }
                 }
             }
