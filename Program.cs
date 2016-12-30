@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Security;
+using System.Security.AccessControl;
+using System.Security.Permissions;
 
 namespace photo_folder
 {
@@ -16,10 +19,19 @@ namespace photo_folder
                 nef_folder = @args[0];
             }
 
-            //Console.WriteLine(root);
-            //Console.WriteLine(nef_folder);
+            FileIOPermission fp = new FileIOPermission(FileIOPermissionAccess.Read, root);
+            fp.AddPathList(FileIOPermissionAccess.Write | FileIOPermissionAccess.Read, nef_folder);
 
-            Execute(root, nef_folder, "nef");
+            try
+            {
+                fp.Demand();
+
+                Execute(root, nef_folder, "nef");
+            }
+            catch (SecurityException s)
+            {
+                Console.WriteLine(s.Message);
+            }
 
             //Console.ReadLine();
         }
