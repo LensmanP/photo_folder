@@ -46,6 +46,8 @@ namespace photo_folder
 
         static void CutMoveFiles(string[] files, string dest)
         {
+            string dst_name = "";
+
             foreach (string item in files)
             {
                 try
