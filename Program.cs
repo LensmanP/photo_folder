@@ -9,7 +9,7 @@ namespace photo_folder
         {
 
             string root = Directory.GetCurrentDirectory();
-            string nef_folder = CreateFolder(root+@"\nef");
+            string nef_folder = CreateFolder(root + @"\nef");
 
             if (args.Length > 0)
             {
@@ -24,9 +24,9 @@ namespace photo_folder
             //Console.ReadLine();
         }
 
-        static void Execute(string root , string nef_folder, string format)
+        static void Execute(string root, string nef_folder, string format)
         {
-            string[] nefs = Directory.GetFiles(root, "*."+format, SearchOption.TopDirectoryOnly);
+            string[] nefs = Directory.GetFiles(root, "*." + format, SearchOption.TopDirectoryOnly);
 
             CutMoveFiles(nefs, nef_folder);
 
@@ -72,7 +72,7 @@ namespace photo_folder
                     Console.WriteLine("Press Enter");
                     //Console.ReadLine();
                 }
-                
+
             }
         }
     }
