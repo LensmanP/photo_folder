@@ -34,11 +34,13 @@ namespace photo_folder
 
         static string CreateFolder(string path)
         {
-            string ret = "";
+            string ret = path;
+
             if (!Directory.Exists(path))
             {
                 ret = Directory.CreateDirectory(path).FullName;
-            };
+            }
+
             return ret;
         }
 
