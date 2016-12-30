@@ -51,21 +51,12 @@ namespace photo_folder
                 try
                 {
                     FileInfo fi = new FileInfo(item);
-                    File.Copy(item, dest + @"\" + fi.Name);
-                    //Console.WriteLine("Copy " + item.ToString());
+                    dst_name = dest + @"\" + fi.Name;
 
-                    try
+                    if (!File.Exists(dst_name))
                     {
-                        File.Delete(item);
-                        //Console.WriteLine("Delete " + item.ToString());
+                        File.Move(item, dst_name);
                     }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine("Delete error " + e.ToString());
-                        Console.WriteLine("Press Enter");
-                        //Console.ReadLine();
-                    }
-
 
                 }
                 catch (Exception e)
